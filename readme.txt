@@ -1,9 +1,10 @@
 === Asesor de Cookies para normativa española ===
+Contributors: Carlos Doral Pérez (webartesanal.com)
 Tags: cookie, cookies, spain, ley, law, politica, policy, españa, normativa
+Requires at least: 3.5
 Tested up to: 3.6.1
-Stable tag: 
+Stable tag: 0.11
 License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
