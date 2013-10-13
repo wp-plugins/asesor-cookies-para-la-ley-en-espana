@@ -1,0 +1,193 @@
+/*============================================
+  General
+  ============================================*/
+.cdp-cookies-alerta {
+	width: 100%;
+	color:#bbbbbb;
+	background-color: #444444;
+	z-index: 10000;
+}
+.cdp-cookies-alerta .cdp-cookies-texto {
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 10px 10px 15px 10px;
+}
+.cdp-cookies-alerta .cdp-cookies-texto h4 {
+	text-align: center;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 16px;
+	color:#ffffff;
+	padding: 0 0 5px 0;
+	margin: 0;
+	text-rendering: optimizeLegibility;
+}
+.cdp-cookies-alerta .cdp-cookies-texto p {
+	padding: 5px 0;
+	margin: 0;
+	text-align: center;
+	color:#bbbbbb;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	line-height: 11px;
+	text-rendering: optimizeLegibility;
+}
+.cdp-cookies-alerta .cdp-cookies-texto a {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #ff8888;
+	text-decoration: none;
+	border: 0;
+	text-rendering: optimizeLegibility;
+}
+.cdp-cookies-alerta .cdp-cookies-texto a:hover, 
+.cdp-cookies-alerta .cdp-cookies-texto a:active, 
+.cdp-cookies-alerta .cdp-cookies-texto a:visited {
+	color: #ffcccc;
+}
+
+/*============================================
+  Modo ventana, pos superior
+  ============================================*/
+.cdp-cookies-layout-ventana.cdp-cookies-pos-superior {
+	display: none;
+	position: fixed;
+	top: 0;
+}
+
+/*============================================
+  Modo ventana, pos inferior
+  ============================================*/
+.cdp-cookies-layout-ventana.cdp-cookies-pos-inferior {
+	display: none;
+	position: fixed;
+	bottom: 0;
+}
+
+/*============================================
+  Modo pagina, pos superior
+  ============================================*/
+.cdp-cookies-layout-pagina.cdp-cookies-pos-superior {
+}
+
+/*============================================
+  Modo pagina, pos inferior
+  ============================================*/
+.cdp-cookies-layout-pagina.cdp-cookies-pos-inferior {
+}
+
+/*============================================
+  Alineación
+  ============================================*/
+.cdp-cookies-alerta.cdp-cookies-textos-izq .cdp-cookies-texto h4,
+.cdp-cookies-alerta.cdp-cookies-textos-izq .cdp-cookies-texto p {
+	text-align: left;
+}
+
+/*============================================
+  Color gris
+  ============================================*/
+.cdp-cookies-alerta.cdp-cookies-tema-gris {
+	background-color: #444444;
+}
+.cdp-cookies-alerta.cdp-cookies-tema-gris .cdp-cookies-texto h4 {
+	color: #ffffff;
+}
+.cdp-cookies-alerta.cdp-cookies-tema-gris .cdp-cookies-texto p {
+	color: #bbbbbb;
+}
+.cdp-cookies-alerta.cdp-cookies-tema-gris .cdp-cookies-texto a {
+	color: #ff8888 !important;
+}
+.cdp-cookies-alerta.cdp-cookies-tema-gris .cdp-cookies-texto a:hover,
+.cdp-cookies-alerta.cdp-cookies-tema-gris .cdp-cookies-texto a:active,
+.cdp-cookies-alerta.cdp-cookies-tema-gris .cdp-cookies-texto a:visited {
+	color: #ffcccc !important;
+}
+
+/*============================================
+  Color blanco
+  ============================================*/
+.cdp-cookies-alerta.cdp-cookies-tema-blanco {
+	background-color: #ffffff;
+}
+.cdp-cookies-alerta.cdp-cookies-tema-blanco .cdp-cookies-texto h4 {
+	color: #666666;
+}
+.cdp-cookies-alerta.cdp-cookies-tema-blanco .cdp-cookies-texto p {
+	color: #888888;
+}
+.cdp-cookies-alerta.cdp-cookies-tema-blanco .cdp-cookies-texto a {
+	color: #cc8888;
+}
+.cdp-cookies-alerta.cdp-cookies-tema-blanco .cdp-cookies-texto a:hover,
+.cdp-cookies-alerta.cdp-cookies-tema-blanco .cdp-cookies-texto a:active,
+.cdp-cookies-alerta.cdp-cookies-tema-blanco .cdp-cookies-texto a:visited {
+	color: #eeaaaa;
+}
+
+/*============================================
+  Color rojo
+  ============================================*/
+.cdp-cookies-alerta.cdp-cookies-tema-rojo {
+	background-color: #e04729;
+}
+.cdp-cookies-alerta.cdp-cookies-tema-rojo .cdp-cookies-texto h4 {
+	color: #ffffff;
+}
+.cdp-cookies-alerta.cdp-cookies-tema-rojo .cdp-cookies-texto p {
+	color: #dddddd;
+}
+.cdp-cookies-alerta.cdp-cookies-tema-rojo .cdp-cookies-texto a {
+	color: #febebe;
+}
+.cdp-cookies-alerta.cdp-cookies-tema-rojo .cdp-cookies-texto a:hover,
+.cdp-cookies-alerta.cdp-cookies-tema-rojo .cdp-cookies-texto a:active,
+.cdp-cookies-alerta.cdp-cookies-tema-rojo .cdp-cookies-texto a:visited {
+	color: #ffffff;
+}
+
+/*============================================
+  Color azul
+  ============================================*/
+.cdp-cookies-alerta.cdp-cookies-tema-azul {
+	background-color: #5492e0;
+}
+.cdp-cookies-alerta.cdp-cookies-tema-azul .cdp-cookies-texto h4 {
+	color: #ffffff;
+}
+.cdp-cookies-alerta.cdp-cookies-tema-azul .cdp-cookies-texto p {
+	color: #eeeeee;
+}
+.cdp-cookies-alerta.cdp-cookies-tema-azul .cdp-cookies-texto a {
+	color: #b7d7ff;
+}
+.cdp-cookies-alerta.cdp-cookies-tema-azul .cdp-cookies-texto a:hover,
+.cdp-cookies-alerta.cdp-cookies-tema-azul .cdp-cookies-texto a:active,
+.cdp-cookies-alerta.cdp-cookies-tema-azul .cdp-cookies-texto a:visited {
+	color: #dcebff;
+}
+
+/*============================================
+  Color verde
+  ============================================*/
+.cdp-cookies-alerta.cdp-cookies-tema-verde {
+	background-color: #0b7000;
+}
+.cdp-cookies-alerta.cdp-cookies-tema-verde .cdp-cookies-texto h4 {
+	color: #ffffff;
+}
+.cdp-cookies-alerta.cdp-cookies-tema-verde .cdp-cookies-texto p {
+	color: #dddddd;
+}
+.cdp-cookies-alerta.cdp-cookies-tema-verde .cdp-cookies-texto a {
+	color: #75c76c;
+}
+.cdp-cookies-alerta.cdp-cookies-tema-verde .cdp-cookies-texto a:hover,
+.cdp-cookies-alerta.cdp-cookies-tema-verde .cdp-cookies-texto a:active,
+.cdp-cookies-alerta.cdp-cookies-tema-verde .cdp-cookies-texto a:visited {
+	color: #c4ffbe;
+}
