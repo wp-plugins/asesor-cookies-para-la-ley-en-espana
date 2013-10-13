@@ -20,7 +20,7 @@ Características del plugin:
 * Permite ajustar el estilo de color del aviso que se muestra al usuario, hay cinco colores: gris, blanco, rojo, verde y azul.
 * Permite configurar la posición del aviso (inferior, superior) y el lugar de inclusión (en página o en ventana).
 * Permite mostrar el aviso en modo 'vista previa' para que elija el formato y lugar donde aparece el aviso.
-
+ 
 == Screenshots ==
 
 1. Así aparece el aviso de cookies al visitante de su web.
