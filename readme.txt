@@ -1,10 +1,12 @@
 === Asesor de Cookies para normativa española ===
-Contributors: Carlos Doral Pérez (webartesanal.com)
+Contributors: Carlos Doral Pérez (<a href="http:://webartesanal.com">webartesanal.com</a>)
 Tags: cookie, cookies, spain, ley, law, politica, policy, españa, normativa
 Requires at least: 3.5
 Tested up to: 3.6.1
 Stable tag: 0.11
 License: GPLv2 or later
+
+Este plugins le ayuda a cumplir con la ley de cookies española proporcionándole los textos legales y técnicos necesarios.
 
 == Description ==
 
@@ -13,16 +15,16 @@ Este plugin le va a ayudar a confeccionar su política de cookies para la ley es
 Este plugin le proporciona los textos legales y técnicos iniciales que necesita su web, se generan automáticamente y los puede editar si lo desea. Estos textos son la política de cookies, la descripción técnica de las cookies y las instrucciones de manipulación de cookies desde los navegadores más populares, todo ello para que el usuario web tenga la máxima información posible, todos ellos requisitos exigidos por la AEPD.
 
 Características del plugin:
-- Incorpora los textos legales base.
-- Incorpora un botón para crear automáticamente las dos páginas que necesita su web: La política de cookies y la descripción de cookies para los usuarios web. Las páginas son editables.
-- Permite ajustar el estilo de color del aviso que se muestra al usuario, hay cinco colores: gris, blanco, rojo, verde y azul.
-- Permite configurar la posición del aviso (inferior, superior) y el lugar de inclusión (en página o en ventana).
-- Permite mostrar el aviso en modo 'vista previa' para que elija el formato y lugar donde aparece el aviso.
+* Incorpora los textos legales base.
+* Incorpora un botón para crear automáticamente las dos páginas que necesita su web: La política de cookies y la descripción de cookies para los usuarios web. Las páginas son editables.
+* Permite ajustar el estilo de color del aviso que se muestra al usuario, hay cinco colores: gris, blanco, rojo, verde y azul.
+* Permite configurar la posición del aviso (inferior, superior) y el lugar de inclusión (en página o en ventana).
+* Permite mostrar el aviso en modo 'vista previa' para que elija el formato y lugar donde aparece el aviso.
 
 == Screenshots ==
 
-aviso-usuario.png. Así aparece el aviso de cookies al visitante de su web.
-pantalla-configuracion.png. Panel de configuración que permite cambiar los colores, posición del aviso, etc.
+1. Así aparece el aviso de cookies al visitante de su web.
+2. Panel de configuración que permite cambiar los colores, posición del aviso, etc.
 
 == Installation ==
 
