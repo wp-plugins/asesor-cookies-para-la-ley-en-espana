@@ -15,6 +15,7 @@ Este plugin le va a ayudar a confeccionar su política de cookies para la ley es
 Este plugin le proporciona los textos legales y técnicos iniciales que necesita su web, se generan automáticamente y los puede editar si lo desea. Estos textos son la política de cookies, la descripción técnica de las cookies y las instrucciones de manipulación de cookies desde los navegadores más populares, todo ello para que el usuario web tenga la máxima información posible, todos ellos requisitos exigidos por la AEPD.
 
 Características del plugin:
+
 * Incorpora los textos legales base.
 * Incorpora un botón para crear automáticamente las dos páginas que necesita su web: La política de cookies y la descripción de cookies para los usuarios web. Las páginas son editables.
 * Permite ajustar el estilo de color del aviso que se muestra al usuario, hay cinco colores: gris, blanco, rojo, verde y azul.
@@ -23,7 +24,7 @@ Características del plugin:
  
 == Screenshots ==
 
-1. Así aparece el aviso de cookies al visitante de su web.
+1. Así aparecerá el aviso de cookies al visitante de su web.
 2. Panel de configuración que permite cambiar los colores, posición del aviso, etc.
 
 == Installation ==
