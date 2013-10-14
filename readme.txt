@@ -3,7 +3,7 @@ Contributors: Carlos Doral Pérez (<a href="http:://webartesanal.com">webartesan
 Tags: cookie, cookies, spain, ley, law, politica, policy, españa, normativa
 Requires at least: 3.5
 Tested up to: 3.6.1
-Stable tag: 0.11
+Stable tag: 0.12
 License: GPLv2 or later
 
 Este plugins le ayuda a cumplir con la ley de cookies española proporcionándole los textos legales y técnicos necesarios.
@@ -24,7 +24,7 @@ Características del plugin:
  
 == Screenshots ==
 
-1. Así aparecerá el aviso de cookies al visitante de su web.
+1. Así aparecerá el aviso de cookies al visitante de su web. 
 2. Panel de configuración que permite cambiar los colores, posición del aviso, etc.
 
 == Installation ==
@@ -42,4 +42,13 @@ Si lo desea, como método alternativo de instalación puede ir a la sección Plu
 2. En el buscador escriba 'asesor cookies'.
 3. Haga click en 'Instalar'.
 4. Ahora siga desde el paso 2 de la sección anterior.
+
+== Changelog ==
+
+= 0.12 =
+* readme.txt actualizado y capturas de pantalla.
+
+= 0.11 =
+* Versión inicial.
+
 
