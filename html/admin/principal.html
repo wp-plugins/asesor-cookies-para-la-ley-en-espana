@@ -11,9 +11,7 @@
 
 	<p>Este plugin le va a permitir actualizar su web a la <b>ley de cookies española</b>. El funcionamiento consiste en mostrar un mensaje cada vez que un nuevo usuario visita su web avisándole que si sigue navegando está <b>aceptando</b> la recepción de cookies y la <b>política de cookies</b> de su web.</p>
 
-	<p>Además, este plugin le proporciona los textos legales y técnicos que usted necesita, se generan automáticamente y los puede editar si lo desea. Estos textos son la <b>política de cookies</b>, la <b>descripción técnica de las cookies</b> y las </b>instrucciones de manipulación de cookies</b> desde los <b>navegadores</b> más populares.</p>
-
-	<p>Para configurar este plugin tiene que asignar los valores de estilo y formato para el <b>mensaje mostrado al usuario</b> que aparecen en este formulario y debe pulsar el botón <b>Crear páginas automáticamente</b> que le creará una página de <b>Política de Cookies</b> y otra de <b>Descripción de las cookies</b>, fundamentales para cumplir con la normativa.</p>
+	<p>Para configurar este plugin tiene que asignar los valores de estilo y formato para el <b>mensaje mostrado al usuario</b> que aparecen en este formulario y debe pulsar el botón <b>Crear páginas automáticamente</b> que le creará una página de <b>Política de Cookies</b> y otra de <b>Descripción de  cookies</b>, fundamentales para cumplir con la normativa.</p>
 
 	<p>Una vez creadas las páginas, debe editar la de <b>Política de cookies</b> y debe cambiar o completar los siguientes puntos:
 	<ol>
@@ -26,6 +24,26 @@
 </div>
 
 	<form>
+
+		<!-- Texto del aviso -->
+		<div class="cdp-cookies-grid">
+			<div class="cdp-cookies-4c">
+				<label class="padv10"><b>Aviso</b> mostrado al visitante</label>
+			</div>
+			<div class="cdp-cookies-5c">
+				<textarea name="texto_aviso" id="texto_aviso" rows="6"><?php echo cdp_cookies::parametro( 'texto_aviso' );?></textarea>
+			</div>
+		</div>
+
+		<!-- Tamaño del texto -->
+		<div class="cdp-cookies-grid">
+			<div class="cdp-cookies-4c">
+				<label class="padv10">Tamaño del texto del aviso</label>
+			</div>
+			<div class="cdp-cookies-5c">
+				<input type="text" name="tam_fuente" id="tam_fuente" value="<?php echo cdp_cookies::parametro( 'tam_fuente' );?>">
+			</div>
+		</div>
 
 		<!-- Layout -->
 		<div class="cdp-cookies-grid">

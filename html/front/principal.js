@@ -1,6 +1,6 @@
 /* ======================================================================================
    @author     Carlos Doral Pérez (http://webartesanal.com)
-   @version    0.11
+   @version    0.13
    @copyright  Copyright &copy; 2013 Carlos Doral Pérez, All Rights Reserved
                License: GPLv2 or later
    ====================================================================================== */
