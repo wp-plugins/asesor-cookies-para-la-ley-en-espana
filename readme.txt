@@ -2,8 +2,8 @@
 Contributors: Carlos Doral Pérez (<a href="http:://webartesanal.com">webartesanal.com</a>)
 Tags: cookie, cookies, spain, ley, law, politica, policy, españa, normativa
 Requires at least: 3.5
-Tested up to: 3.6.1
-Stable tag: 0.12
+Tested up to: 3.7
+Stable tag: 0.13
 License: GPLv2 or later
 
 Este plugins le ayuda a cumplir con la ley de cookies española proporcionándole los textos legales y técnicos necesarios.
@@ -16,11 +16,9 @@ Este plugin le proporciona los textos legales y técnicos iniciales que necesita
 
 Características del plugin:
 
-* Incorpora los textos legales base.
-* Incorpora un botón para crear automáticamente las dos páginas que necesita su web: La política de cookies y la descripción de cookies para los usuarios web. Las páginas son editables.
-* Permite ajustar el estilo de color del aviso que se muestra al usuario, hay cinco colores: gris, blanco, rojo, verde y azul.
-* Permite configurar la posición del aviso (inferior, superior) y el lugar de inclusión (en página o en ventana).
-* Permite mostrar el aviso en modo 'vista previa' para que elija el formato y lugar donde aparece el aviso.
+* Muestra un aviso sobre la utilización de cookies a cada usuario nuevo de su web.
+* Permite configurar la posición del aviso (inferior, superior), el lugar de inclusión (en página o en ventana), tamaño de fuente, elegir entre 5 colores, el texto ahora es editable y se incorpora un modo 'vista previa'.
+* Permite crear automáticamente las dos páginas con los textos legales y técnicos que necesita su web: La política de cookies y la descripción coloquial de cookies para los usuarios web. Las páginas son editables.
  
 == Screenshots ==
 
@@ -45,10 +43,14 @@ Si lo desea, como método alternativo de instalación puede ir a la sección Plu
 
 == Changelog ==
 
+= 0.13 =
+* El texto del aviso ahora es editable.
+* Se puede cambiar el tamaño de fuente.
+* Corregido error que aparecía cuando un usuario no administrador entraba al back de WP.
+
 = 0.12 =
 * readme.txt actualizado y capturas de pantalla.
 
 = 0.11 =
 * Versión inicial.
-
 

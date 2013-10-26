@@ -1,7 +1,7 @@
 
 /* ======================================================================================
    @author     Carlos Doral Pérez (http://webartesanal.com)
-   @version    0.11
+   @version    0.13
    @copyright  Copyright &copy; 2013 Carlos Doral Pérez, All Rights Reserved
                License: GPLv2 or later
    ====================================================================================== */
@@ -25,6 +25,8 @@ function guardar()
 	//
 	var datos = {
 		action: 'guardar_config',
+		texto_aviso: jQuery( '#texto_aviso' ).val(),
+		tam_fuente: jQuery( '#tam_fuente' ).val(),
 		layout: jQuery( '#layout' ).val(),
 		posicion: jQuery( '#posicion' ).val(),
 		alineacion: jQuery( '#alineacion' ).val(),
@@ -108,7 +110,9 @@ jQuery( document ).ready( function( $ ) {
 			'&layout=' + $( '#layout' ).val() +
 			'&posicion=' + $( '#posicion' ).val() +
 			'&alineacion=' + $( '#alineacion' ).val() +
-			'&tema=' + $( '#tema:checked' ).val()
+			'&tema=' + $( '#tema:checked' ).val() +
+			'&tam_fuente=' + $( '#tam_fuente' ).val() +
+			'&texto_aviso=' + encodeURI( $( '#texto_aviso' ).val() )
 		);
 	} );
 

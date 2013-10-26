@@ -2,7 +2,7 @@
 
 /* ======================================================================================
    @author     Carlos Doral Pérez (http://webartesanal.com)
-   @version    0.11
+   @version    0.13
    @copyright  Copyright &copy; 2013 Carlos Doral Pérez, All Rights Reserved
                License: GPLv2 or later
    ====================================================================================== */
@@ -24,7 +24,7 @@ class cdp_cookies
 			throw new cdp_cookies_error( 'Este plugin no puede ser llamado directamente' );
 		
 		//
-		// Registro eventos front
+		// Registro eventos front y comunes
 		//
 		add_action( 'wp_ajax_traer_aviso', array( __CLASS__, 'ajax_traer_aviso' ) );
 		add_action( 'wp_ajax_nopriv_traer_aviso', array( __CLASS__, 'ajax_traer_aviso' ) );
@@ -101,11 +101,25 @@ class cdp_cookies
 		$class .= ' cdp-cookies-tema-' . self::parametro( 'tema' );
 
 		//
-		// Obtengo el archivo con el texto
+		// Preparo el texto
+		//
+		$tam_fuente = self::parametro( 'tam_fuente' );
+		$tam_fuente_titulo = str_replace( 'px', '', $tam_fuente ) + 3;
+		$estilo_texto = 'style="font-size:{tam_fuente} !important;line-height:{tam_fuente} !important"';
+		$estilo_titulo = 'style="font-size:{tam_fuente_titulo}px !important;line-height:{tam_fuente_titulo}px !important"';
+		$estilo_enlace = 'style="font-size:{tam_fuente} !important;line-height:{tam_fuente} !important"';
+		$texto_aviso = html_entity_decode( self::parametro( 'texto_aviso' ) );
+		
 		//
 		$html = file_get_contents( CDP_COOKIES_DIR_HTML . 'front/aviso.html' );
+		$html = str_replace( '{texto_aviso}', $texto_aviso, $html );
+		$html = str_replace( '{estilo_texto}', $estilo_texto, $html );
+		$html = str_replace( '{estilo_titulo}', $estilo_titulo, $html );
+		$html = str_replace( '{estilo_enlace}', $estilo_enlace, $html );
 		$html = str_replace( '{class}', $class, $html );
 		$html = str_replace( '{enlace_politica}', self::parametro( 'enlace_politica' ), $html );
+		$html = str_replace( '{tam_fuente}', $tam_fuente, $html );
+		$html = str_replace( '{tam_fuente_titulo}', $tam_fuente_titulo, $html );
 		echo 
 			json_encode
 			( 
@@ -177,13 +191,10 @@ class cdp_cookies
 	 */
 	static function ajax_guardar_config()
 	{
-		cdp_cookies_log::pon( "paso1" );
 		try
 		{
-		cdp_cookies_log::pon( "paso2" );
 			//
 			self::comprobar_usuario_admin();
-			cdp_cookies_log::pon( "paso3" );
 				
 			//
 			if( !wp_verify_nonce( cdp_cookies_input::post( 'nonce_guardar' ), 'guardar' ) )
@@ -196,7 +207,13 @@ class cdp_cookies
 			cdp_cookies_input::validar_array( 'tema', array( 'gris', 'blanco', 'azul', 'verde', 'rojo' ) );
 			cdp_cookies_input::validar_url( 'enlace_politica' );
 			cdp_cookies_input::validar_url( 'enlace_mas_informacion' );
-								
+			if( !cdp_cookies_input::post( 'texto_aviso' ) )
+				throw new cdp_cookies_error( "El texto del aviso no puede estar vacío" );
+			if( !preg_match( '/^[0-9]+px$/i', cdp_cookies_input::post( 'tam_fuente' ) ) )
+				throw new cdp_cookies_error( 
+					"<b>Tamaño de fuente del texto</b> debe tener un valor en px, p.e: 12px" 
+				);
+				
 			//
 			self::parametro( 'layout', cdp_cookies_input::post( 'layout' ) );
 			self::parametro( 'posicion', cdp_cookies_input::post( 'posicion' ) );
@@ -204,7 +221,9 @@ class cdp_cookies
 			self::parametro( 'tema', cdp_cookies_input::post( 'tema' ) );
 			self::parametro( 'enlace_politica', cdp_cookies_input::post( 'enlace_politica' ) );
 			self::parametro( 'enlace_mas_informacion', cdp_cookies_input::post( 'enlace_mas_informacion' ) );
-	
+			self::parametro( 'texto_aviso', cdp_cookies_input::post( 'texto_aviso' ) );
+			self::parametro( 'tam_fuente', cdp_cookies_input::post( 'tam_fuente' ) );
+				
 			//
 			echo json_encode( array( 'ok' => true, 'txt' => 'Configuración guardada correctamente' ) );
 		}
@@ -230,7 +249,9 @@ class cdp_cookies
 				'alineacion' => 'izq',
 				'tema' => 'gris',
 				'enlace_politica' => '#',
-				'enlace_mas_informacion' => '#'
+				'enlace_mas_informacion' => '#',
+				'texto_aviso' => htmlspecialchars( '<h4 {estilo_titulo}>Uso de cookies</h4><p {estilo_texto}>Este sitio web utiliza cookies para que usted tenga la mejor experiencia de usuario. Si continúa navegando está dando su consentimiento para la aceptación de las mencionadas cookies y la aceptación de nuestra <a href="{enlace_politica}" {estilo_enlace}>política de cookies</a>, pinche el enlace para mayor información.</p>' ),
+				'tam_fuente' => '12px'
 			);
 		if( !key_exists( $nombre, $vdef ) )
 			throw new cdp_cookies_error( sprintf( "Parámetro desconocido: %s", $nombre ) );
@@ -246,12 +267,16 @@ class cdp_cookies
 					try
 					{
 						self::comprobar_usuario_admin();
+						if( $nombre == 'texto_aviso' )
+							return rawurldecode( $v );
 						return $v;
 					}
 					catch( cdp_cookies_error $e )
 					{
 					}
 				}
+			if( $nombre == 'texto_aviso' )
+				return stripslashes( get_option( 'cdp_cookies_' . $nombre, $vdef[$nombre] ) );
 			return get_option( 'cdp_cookies_' . $nombre, $vdef[$nombre] );
 		}
 	
@@ -284,8 +309,11 @@ class cdp_cookies
 	 */
 	static function comprobar_usuario_admin()
 	{
-		if( !current_user_can( 'manage_options' ) )
-			throw new cdp_cookies_error( 'No tiene privilegios para acceder a esta página' );
+		if( function_exists( 'current_user_can' ) )
+			if( function_exists( 'wp_get_current_user' ) )
+				if( current_user_can( 'manage_options' ) )
+					return;
+		throw new cdp_cookies_error( 'No tiene privilegios para acceder a esta página' );
 	}
 	
 	/**
@@ -293,9 +321,6 @@ class cdp_cookies
 	 */
 	static function crear_menu_admin()
 	{
-		//
-		self::comprobar_usuario_admin();
-	
 		//
 		// Página configuración que cuelgue de Herramientas
 		//
@@ -322,334 +347,6 @@ class cdp_cookies
 /**
  *
  */
-class __cdp_cookies
-{
-	/**
-	 *
-	 */
-	static function ejecutar()
-	{
-		//
-		// Plugin no puede ser ejecutado directamente
-		//
-		if( !( function_exists( 'add_action' ) && defined( 'ABSPATH' ) ) )
-			throw new cdp_cookies_error( 'Este plugin no puede ser llamado directamente' );
-		
-		//
-		// Para que funcionen correctamente las cookies
-		//
-		add_action( 'init', array( __CLASS__, 'iniciar_sesion' ) );
-		
-		//
-		// Compruebo si estoy en el admin o en el front
-		//
-		if( is_admin() )
-		{
-			//
-			// Estoy en el área administración
-			//
-			add_action( 'admin_menu', array( __CLASS__, 'crear_menu_admin' ) );
-			add_action( 'admin_enqueue_scripts', array( __CLASS__, 'cargar_archivos_admin' ) );
-			add_action( 'wp_ajax_guardar_config', array( __CLASS__, 'ajax_guardar_config' ) );			
-			return;
-		}
-		
-		//
-		// Estoy en el front de la web
-		//
-		
-		//
-		// ojo! para debug
-		//
-		if( 0 )
-			self::eliminar_cookie();
-
-		//
-		// Shortcode para mostrar la política de privacidad completa
-		//
-		add_shortcode( 'mostrar_politica_cookies', array( __CLASS__, 'dibujar_politica' ) );
-		
-		//
-		// Shortcode para mostrar información adicional sobre las cookies
-		//
-		add_shortcode( 'mostrar_mas_info_cookies', array( __CLASS__, 'dibujar_mas_informacion' ) );
-
-		//
-		// Vista previa de cookies
-		//
-		if( cdp_cookies_input::get( 'cdp_cookies_vista_previa' ) )
-		{
-			add_action( 'wp_footer', array( __CLASS__, 'dibujar_aviso' ) );
-			add_action( 'wp_enqueue_scripts', array( __CLASS__, 'cargar_archivos_front' ) );
-			return;
-		}
-		
-		//
-		// Si ya se ha mostrado el aviso
-		//
-		if( self::hay_cookie_guardada() )
-			return;
-		
-		//
-		// Activo eventos front
-		//
-		add_action( 'init', array( __CLASS__, 'guardar_cookie' ) );
-		add_action( 'wp_footer', array( __CLASS__, 'dibujar_aviso' ) );
-		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'cargar_archivos_front' ) );
-	}
-
-	/**
-	 * 
-	 */
-	static function iniciar_sesion()
-	{
-		if( !session_id() )
-			session_start();
-	}
-	
-	/**
-	 *
-	 */
-	static function hay_cookie_guardada()
-	{
-		return 
-			isset( $_COOKIE ) && 
-			isset( $_COOKIE['cdp_cookies_wordpress_plugin'] ) &&
-			$_COOKIE['cdp_cookies_wordpress_plugin'] == 1;
-	}
-	
-	/**
-	 *
-	 */
-	static function guardar_cookie()
-	{
-		setcookie
-		( 
-			'cdp_cookies_wordpress_plugin', 
-			'1', 
-			time() + 60 * 60 * 24 * 30 * 12 * 100
-		);
-	}
-
-	/**
-	 *
-	 */
-	private static function eliminar_cookie()
-	{
-		setcookie
-		(
-			'cdp_cookies_wordpress_plugin',
-			'0',
-			time() - 10000
-		);
-	}
-	
-	/**
-	 * 
-	 */
-	static function parametro( $nombre, $valor = null )
-	{
-		//
-		$vdef = 
-			array( 
-				'layout' => 'ventana',
-				'posicion' => 'superior',
-				'alineacion' => 'izq',
-				'tema' => 'gris',
-				'enlace_politica' => '#',
-				'enlace_mas_informacion' => '#'
-			);
-		if( !key_exists( $nombre, $vdef ) )
-			throw new cdp_cookies_error( sprintf( "Parámetro desconocido: %s", $nombre ) );
-				
-		// Devuelvo valor
-		if( $valor === null )
-		{
-			// Hago una excepción si estoy mostrando el aviso en vista previa
-			if( cdp_cookies_input::get( 'cdp_cookies_vista_previa' ) )
-				if( ( $v = cdp_cookies_input::get( $nombre ) ) )
-				{
-					// Antes de devolver el valor me aseguro que soy el usuario administrador
-					try
-					{
-						self::comprobar_usuario_admin();
-						return $v;
-					}
-					catch( cdp_cookies_error $e )
-					{					
-					}
-				}
-			return get_option( 'cdp_cookies_' . $nombre, $vdef[$nombre] );
-		}
-
-		// Lo almaceno
-		update_option( 'cdp_cookies_' . $nombre, $valor );
-	}
-	
-	/**
-	 *
-	 */
-	static function comprobar_usuario_admin()
-	{
-		if( !current_user_can( 'manage_options' ) )
-			throw new cdp_cookies_error( 'No tiene privilegios para acceder a esta página' );
-	}
-
-	/**
-	 *
-	 */
-	static function crear_menu_admin()
-	{
-		//
-		self::comprobar_usuario_admin();
-		
-		//
-		// Página configuración que cuelgue de Herramientas
-		//
-		add_submenu_page
-		( 
-			'tools.php', 
-			'Asesor de cookies',
-			'Asesor de cookies', 
-			'manage_options', 
-			'cdp_cookies', 
-			array( __CLASS__, 'pag_configuracion' )
-		);
-	}
-		
-	/**
-	 *
-	 */
-	static function cargar_archivos_front()
-	{
-		wp_enqueue_style( 'estilos', CDP_COOKIES_URL_HTML . 'estilos.css', false );
-		wp_enqueue_script( 'main', CDP_COOKIES_URL_HTML . 'main.js', array( 'jquery' ) );
-	}
-
-	/**
-	 *
-	 */
-	static function cargar_archivos_admin()
-	{
-		wp_enqueue_style( 'estilos-admin', CDP_COOKIES_URL_HTML . 'estilos-admin.css', false );
-		wp_register_script( 'main-admin', CDP_COOKIES_URL_HTML . 'main-admin.js', array( 'jquery' ) );
-		wp_enqueue_script( 'main-admin' );
-		wp_localize_script( 
-			'main-admin', 
-			'info', 
-			array( 
-				'url_admin' => CDP_COOKIES_URL_RAIZ . 'plugin.php', 
-				'siteurl' => site_url(),
-				'nonce_guardar' => wp_create_nonce( 'guardar' )
-			) );
-	}
-	
-	/**
-	 * 
-	 */
-	static function dibujar_aviso()
-	{		
-		//
-		// Posicionamiento en ventana o página
-		//
-		$class = '';
-		if( self::parametro( 'layout' ) == 'ventana' )
-			$class .= ' cdp-cookies-layout-ventana';
-		else
-			$class .= ' cdp-cookies-layout-pagina';
-		
-		//
-		// Posición: superior, inferior
-		//
-		$class .= ' cdp-cookies-pos-' . self::parametro( 'posicion' );
-
-		//
-		// Alineación de los textos
-		//
-		if( self::parametro( 'alineacion' ) == 'izq' )
-			$class .= ' cdp-cookies-textos-izq';
-
-		//
-		// Tema de color
-		//
-		$class .= ' cdp-cookies-tema-' . self::parametro( 'tema' );
-		
-		//
-		// Obtengo el archivo con el texto
-		//
-		$html = file_get_contents( CDP_COOKIES_DIR_HTML . 'aviso.html' );
-		$html = str_replace( '{class}', $class, $html );
-		$html = str_replace( '{enlace_politica}', self::parametro( 'enlace_politica' ), $html );
-		echo $html;
-	}
-	
-	/**
-	 *
-	 */
-	static function dibujar_politica()
-	{
-		$html = file_get_contents( CDP_COOKIES_DIR_HTML . 'politica.html' );
-		$html = str_replace( '{enlace_mas_informacion}', self::parametro( 'enlace_mas_informacion' ), $html );
-		echo $html;
-	}
-
-	/**
-	 *
-	 */
-	static function dibujar_mas_informacion()
-	{
-		$html = file_get_contents( CDP_COOKIES_DIR_HTML . 'mas-informacion.html' );
-		echo $html;
-	}
-	
-	/**
-	 *
-	 */
-	static function pag_configuracion()
-	{
-		require_once CDP_COOKIES_DIR_HTML . 'admin.html';
-	}
-	
-	/**
-	 *
-	 */
-	static function ajax_guardar_config()
-	{
-		self::comprobar_usuario_admin();
-		try
-		{
-			//
-			if( !wp_verify_nonce( cdp_cookies_input::post( 'nonce_guardar' ), 'guardar' ) )
-				throw new cdp_cookies_error( "Se ha producido un error de seguridad en este plugin" );
-			
-			//
-			cdp_cookies_input::validar_array( 'layout', array( 'ventana', 'pagina' ) );
-			cdp_cookies_input::validar_array( 'posicion', array( 'superior', 'inferior' ) );
-			cdp_cookies_input::validar_array( 'alineacion', array( 'izq', 'cen' ) );
-			cdp_cookies_input::validar_array( 'tema', array( 'gris', 'blanco', 'azul', 'verde', 'rojo' ) );
-			cdp_cookies_input::validar_url( 'enlace_politica' );
-			cdp_cookies_input::validar_url( 'enlace_mas_informacion' );
-			
-			//
-			self::parametro( 'layout', cdp_cookies_input::post( 'layout' ) );
-			self::parametro( 'posicion', cdp_cookies_input::post( 'posicion' ) );
-			self::parametro( 'alineacion', cdp_cookies_input::post( 'alineacion' ) );
-			self::parametro( 'tema', cdp_cookies_input::post( 'tema' ) );
-			self::parametro( 'enlace_politica', cdp_cookies_input::post( 'enlace_politica' ) );
-			self::parametro( 'enlace_mas_informacion', cdp_cookies_input::post( 'enlace_mas_informacion' ) );
-				
-			//
-			echo json_encode( array( 'ok' => true, 'txt' => 'Configuración guardada correctamente' ) );
-		}
-		catch( Exception $e )
-		{
-			cdp_cookies_log::pon( $e );
-			echo json_encode( array( 'ok' => false, 'txt' => $e->getMessage() ) );
-		}
-		exit;
-	}
-	
-}
 
 /**
  *
