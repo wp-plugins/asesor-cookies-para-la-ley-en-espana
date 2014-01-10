@@ -1,7 +1,7 @@
 
 /* ======================================================================================
    @author     Carlos Doral Pérez (http://webartesanal.com)
-   @version    0.13
+   @version    0.14
    @copyright  Copyright &copy; 2013 Carlos Doral Pérez, All Rights Reserved
                License: GPLv2 or later
    ====================================================================================== */
@@ -33,7 +33,8 @@ function guardar()
 		tema: jQuery( '#tema:checked' ).val(),
 		enlace_politica: jQuery( '#enlace_politica' ).val(),
 		enlace_mas_informacion: jQuery( '#enlace_mas_informacion' ).val(),
-		nonce_guardar: info.nonce_guardar
+		nonce_guardar: cdp_cookies_info.nonce_guardar,
+		comportamiento: jQuery( '#comportamiento' ).val()
 	};
 
 	//
@@ -51,7 +52,7 @@ function crear_paginas()
 	//
 	var datos = {
 		action: 'crear_paginas',
-		nonce_crear_paginas : info.nonce_crear_paginas
+		nonce_crear_paginas : cdp_cookies_info.nonce_crear_paginas
 	};
 
 	//
@@ -105,9 +106,10 @@ jQuery( document ).ready( function( $ ) {
 	// Vista previa del aviso
 	$( 'a.cdp-cookies-vista-previa' ).click( function() {
 		window.open( 
-			info.siteurl + 
+			cdp_cookies_info.siteurl + 
 			'?cdp_cookies_vista_previa=1' +
 			'&layout=' + $( '#layout' ).val() +
+			'&comportamiento=' + $( '#comportamiento' ).val() +
 			'&posicion=' + $( '#posicion' ).val() +
 			'&alineacion=' + $( '#alineacion' ).val() +
 			'&tema=' + $( '#tema:checked' ).val() +

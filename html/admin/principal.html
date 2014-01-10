@@ -4,7 +4,7 @@
 	<p>
 		<a href="javascript:;" class="cdp-cookies-bot-instrucciones">[Ocultar/Mostrar instrucciones]</a>
 		&nbsp;&nbsp;&nbsp;
-		<a href="http://webartesanal.com">Plugin creado por Carlos Doral Pérez (webartesanal.com)</a>
+		<a href="http://webartesanal.com">Plugin creado por Carlos Doral (webartesanal.com)</a>
 	</p>
 
 <div class="cdp-cookies-instrucciones">
@@ -32,6 +32,23 @@
 			</div>
 			<div class="cdp-cookies-5c">
 				<textarea name="texto_aviso" id="texto_aviso" rows="6"><?php echo cdp_cookies::parametro( 'texto_aviso' );?></textarea>
+			</div>
+		</div>
+
+		<!-- Comportamiento -->
+		<div class="cdp-cookies-grid">
+			<div class="cdp-cookies-4c">
+				<label><b>Cuándo</b> desaparece el aviso:</label>
+			</div>
+			<div class="cdp-cookies-5c">
+				<?php
+				$opciones = array( 
+					'navegar' => 'Al navegar, automáticamente',
+					'cerrar' => 'Cuando el usuario pulse CERRAR',
+					'aceptar' => 'Cuando el usuario pulse ACEPTAR'
+				);
+				echo cdp_cookies_html::select( "comportamiento", $opciones, true, cdp_cookies::parametro( 'comportamiento' ) );
+				?>
 			</div>
 		</div>
 

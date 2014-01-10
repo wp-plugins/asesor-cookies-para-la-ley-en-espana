@@ -2,8 +2,8 @@
 
 /* ======================================================================================
    @author     Carlos Doral Pérez (http://webartesanal.com)
-   @version    0.13
-   @copyright  Copyright &copy; 2013 Carlos Doral Pérez, All Rights Reserved
+   @version    0.14
+   @copyright  Copyright &copy; 2013-2014 Carlos Doral Pérez, All Rights Reserved
                License: GPLv2 or later
    ====================================================================================== */
 
@@ -61,11 +61,12 @@ class cdp_cookies
 		wp_localize_script
 		( 
 			'front/principal', 
-			'info',
+			'cdp_cookies_info',
 			array
 			(
 				'url_plugin' => CDP_COOKIES_URL_RAIZ . 'plugin.php',
-				'url_admin_ajax' => admin_url() . 'admin-ajax.php'
+				'url_admin_ajax' => admin_url() . 'admin-ajax.php',
+				'comportamiento' => self::parametro( 'comportamiento' )
 			) 
 		);
 	}
@@ -120,6 +121,16 @@ class cdp_cookies
 		$html = str_replace( '{enlace_politica}', self::parametro( 'enlace_politica' ), $html );
 		$html = str_replace( '{tam_fuente}', $tam_fuente, $html );
 		$html = str_replace( '{tam_fuente_titulo}', $tam_fuente_titulo, $html );
+		
+		//
+		$boton = '';
+		if( self::parametro( 'comportamiento' ) == 'cerrar' )
+			$boton = '<a href="#" class="cdp-cookies-boton-cerrar">CERRAR</a>';
+		if( self::parametro( 'comportamiento' ) == 'aceptar' )
+			$boton = '<a href="#" class="cdp-cookies-boton-cerrar">ACEPTAR</a>';
+		$html = str_replace( '{boton_cerrar}', $boton, $html );
+		
+		//
 		echo 
 			json_encode
 			( 
@@ -202,6 +213,7 @@ class cdp_cookies
 
 			//
 			cdp_cookies_input::validar_array( 'layout', array( 'ventana', 'pagina' ) );
+			cdp_cookies_input::validar_array( 'comportamiento', array( 'navegar', 'cerrar', 'aceptar' ) );
 			cdp_cookies_input::validar_array( 'posicion', array( 'superior', 'inferior' ) );
 			cdp_cookies_input::validar_array( 'alineacion', array( 'izq', 'cen' ) );
 			cdp_cookies_input::validar_array( 'tema', array( 'gris', 'blanco', 'azul', 'verde', 'rojo' ) );
@@ -217,6 +229,7 @@ class cdp_cookies
 			//
 			self::parametro( 'layout', cdp_cookies_input::post( 'layout' ) );
 			self::parametro( 'posicion', cdp_cookies_input::post( 'posicion' ) );
+			self::parametro( 'comportamiento', cdp_cookies_input::post( 'comportamiento' ) );
 			self::parametro( 'alineacion', cdp_cookies_input::post( 'alineacion' ) );
 			self::parametro( 'tema', cdp_cookies_input::post( 'tema' ) );
 			self::parametro( 'enlace_politica', cdp_cookies_input::post( 'enlace_politica' ) );
@@ -246,11 +259,12 @@ class cdp_cookies
 			(
 				'layout' => 'ventana',
 				'posicion' => 'superior',
+				'comportamiento' => 'navegar',
 				'alineacion' => 'izq',
 				'tema' => 'gris',
 				'enlace_politica' => '#',
 				'enlace_mas_informacion' => '#',
-				'texto_aviso' => htmlspecialchars( '<h4 {estilo_titulo}>Uso de cookies</h4><p {estilo_texto}>Este sitio web utiliza cookies para que usted tenga la mejor experiencia de usuario. Si continúa navegando está dando su consentimiento para la aceptación de las mencionadas cookies y la aceptación de nuestra <a href="{enlace_politica}" {estilo_enlace}>política de cookies</a>, pinche el enlace para mayor información.</p>' ),
+				'texto_aviso' => htmlspecialchars( '<h4 {estilo_titulo}>Uso de cookies</h4><p {estilo_texto}>Este sitio web utiliza cookies para que usted tenga la mejor experiencia de usuario. Si continúa navegando está dando su consentimiento para la aceptación de las mencionadas cookies y la aceptación de nuestra <a href="{enlace_politica}" {estilo_enlace}>política de cookies</a>, pinche el enlace para mayor información.<a href="http://wordpress.org/plugins/asesor-cookies-para-la-ley-en-espana/" class="cdp-cookies-boton-creditos" target="_blank">plugin cookies</a></p>' ),
 				'tam_fuente' => '12px'
 			);
 		if( !key_exists( $nombre, $vdef ) )
@@ -294,12 +308,13 @@ class cdp_cookies
 		wp_enqueue_script( 'admin/principal' );
 		wp_localize_script(
 			'admin/principal',
-			'info',
+			'cdp_cookies_info',
 			array
 			(
 				'nonce_guardar' => wp_create_nonce( 'guardar' ),
 				'nonce_crear_paginas' => wp_create_nonce( 'crear_paginas' ),
-				'siteurl' => site_url()
+				'siteurl' => site_url(),
+				'comportamiento' => self::parametro( 'comportamiento' )
 			) 
 		);
 	}
