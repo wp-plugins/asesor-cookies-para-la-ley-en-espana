@@ -1,7 +1,7 @@
 /* ======================================================================================
    @author     Carlos Doral Pérez (http://webartesanal.com)
-   @version    0.11
-   @copyright  Copyright &copy; 2013 Carlos Doral Pérez, All Rights Reserved
+   @version    0.14
+   @copyright  Copyright &copy; 2013-2014 Carlos Doral Pérez, All Rights Reserved
                License: GPLv2 or later
    ====================================================================================== */
 
@@ -17,9 +17,14 @@ jQuery( document ).ready( function( $ )
       return;
    }
 
-   // Funcionamiento normal del plugin
+   // Si ya hay cookie retorno
    if( cdp_cookie.ya_existe_cookie() )
       return;
-   cdp_cookie.poner_cookie();
+
+   // Comportamiento 'navegar'
+   if( cdp_cookie.comportamiento() == 'navegar' )
+      cdp_cookie.poner_cookie();
+
+   // Muestro aviso
    cdp_cookie.mostrar_aviso();
 } );
