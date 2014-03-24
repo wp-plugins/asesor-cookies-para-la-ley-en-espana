@@ -2,7 +2,7 @@
 
 /* ======================================================================================
    @author     Carlos Doral Pérez (http://webartesanal.com)
-   @version    0.14
+   @version    0.15
    @copyright  Copyright &copy; 2013-2014 Carlos Doral Pérez, All Rights Reserved
                License: GPLv2 or later
    ====================================================================================== */
@@ -54,18 +54,19 @@ class cdp_cookies
 	 */
 	static function cargar_archivos_front()
 	{
-		wp_enqueue_style( 'front/estilos', CDP_COOKIES_URL_HTML . 'front/estilos.css', false );
-		wp_enqueue_script( 'front/cookie', CDP_COOKIES_URL_HTML . 'front/_jquery.kookie.js', array( 'jquery' ) );
-		wp_enqueue_script( 'front/lib', CDP_COOKIES_URL_HTML . 'front/lib.js', array( 'jquery' ) );
-		wp_enqueue_script( 'front/principal', CDP_COOKIES_URL_HTML . 'front/principal.js', array( 'jquery' ) );
+		wp_enqueue_style( 'front-estilos', CDP_COOKIES_URL_HTML . 'front/estilos.css', false );
+		wp_enqueue_script( 'front-cookie', CDP_COOKIES_URL_HTML . 'front/_jquery.kookie.js', array( 'jquery' ) );
+		wp_enqueue_script( 'front-lib', CDP_COOKIES_URL_HTML . 'front/lib.js', array( 'jquery' ) );
+		wp_enqueue_script( 'front-principal', CDP_COOKIES_URL_HTML . 'front/principal.js', array( 'jquery' ) );
 		wp_localize_script
 		( 
-			'front/principal', 
+			'front-principal', 
 			'cdp_cookies_info',
 			array
 			(
 				'url_plugin' => CDP_COOKIES_URL_RAIZ . 'plugin.php',
 				'url_admin_ajax' => admin_url() . 'admin-ajax.php',
+				'url_traer_aviso_php' => CDP_COOKIES_TRAER_AVISO_PHP_URL,
 				'comportamiento' => self::parametro( 'comportamiento' )
 			) 
 		);
@@ -303,11 +304,11 @@ class cdp_cookies
 	 */
 	static function cargar_archivos_admin()
 	{
-		wp_enqueue_style( 'admin/estilos', CDP_COOKIES_URL_HTML . 'admin/estilos.css', false );
-		wp_register_script( 'admin/principal', CDP_COOKIES_URL_HTML . 'admin/principal.js', array( 'jquery' ) );
-		wp_enqueue_script( 'admin/principal' );
+		wp_enqueue_style( 'admin-estilos', CDP_COOKIES_URL_HTML . 'admin/estilos.css', false );
+		wp_register_script( 'admin-principal', CDP_COOKIES_URL_HTML . 'admin/principal.js', array( 'jquery' ) );
+		wp_enqueue_script( 'admin-principal' );
 		wp_localize_script(
-			'admin/principal',
+			'admin-principal',
 			'cdp_cookies_info',
 			array
 			(

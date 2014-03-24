@@ -2,25 +2,23 @@
 Contributors: Carlos Doral Pérez (<a href="http:://webartesanal.com">webartesanal.com</a>)
 Tags: cookie, cookies, spain, ley, law, politica, policy, españa, normativa
 Requires at least: 3.5
-Tested up to: 3.8
-Stable tag: 0.14
+Tested up to: 3.8.1
+Stable tag: 0.15
 License: GPLv2 or later
 
-Este plugin le ayuda a cumplir con la ley de cookies española proporcionándole los textos legales y técnicos necesarios.
+Este plugin le va a facilitar la confección de la política de cookies para su sitio web proporcionándole los textos legales y técnicos iniciales.
 
 == Description ==
 
-** Nuevo: Ahora hay un botón CERRAR en el aviso **
+El funcionamiento consiste en mostrar un mensaje cada vez que un nuevo usuario visita su web avisándole que si sigue navegando o si pulsa el botón CERRAR/ACEPTAR del aviso está aceptando la recepción de cookies y la política de cookies.
 
-Este plugin le va a ayudar a confeccionar su política de cookies para la ley española. El funcionamiento consiste en mostrar un mensaje cada vez que un nuevo usuario visita su web avisándole que si sigue navegando está aceptando la recepción de cookies y la política de cookies.
-
-Este plugin le proporciona los textos legales y técnicos iniciales que necesita su web, se generan automáticamente y los puede editar si lo desea. Estos textos son la política de cookies, la descripción técnica de las cookies y las instrucciones de manipulación de cookies desde los navegadores más populares, todo ello para que el usuario web tenga la máxima información posible, todos ellos requisitos exigidos por la AEPD.
+Este plugin le proporciona los textos legales y técnicos iniciales que necesita su web para confeccionar su política de cookies, se generan automáticamente y los puede editar si lo desea. Estos textos son la política de cookies, la descripción técnica de las cookies y las instrucciones de manipulación de cookies desde los navegadores más populares, todo ello para que el usuario web tenga la máxima información posible.
 
 Características del plugin:
 
 * Muestra un aviso sobre la utilización de cookies a cada usuario nuevo de su web.
 * Permite configurar la posición del aviso (inferior, superior) y el comportamiento (bajo qué condiciones desaparece), el lugar de inclusión (en página o en ventana), tamaño de fuente, elegir entre 5 colores, el texto ahora es editable y se incorpora un modo 'vista previa'.
-* Permite crear automáticamente las dos páginas con los textos legales y técnicos que necesita su web: La política de cookies y la descripción coloquial de cookies para los usuarios web. Las páginas son editables.
+* Permite crear automáticamente las dos páginas con los textos legales y técnicos iniciales que necesita su web: La política de cookies y la descripción coloquial de cookies para los usuarios web. Las páginas son editables.
  
 == Screenshots ==
 
@@ -44,6 +42,11 @@ Si lo desea, como método alternativo de instalación puede ir a la sección Plu
 4. Ahora siga desde el paso 2 de la sección anterior.
 
 == Changelog ==
+
+= 0.15 =
+* Validación W3C, la inclusión de CSS no validaba, gracias por avisar Julio!
+* El plugin ahora funciona correctamente si el directorio de administración WP tiene protección .htaccess. Gracias a Antonio Rodríguez por avisar.
+* Banner superior en admin.
 
 = 0.14 =
 * Opción a incluir un botón CERRAR o ACEPTAR en el aviso.

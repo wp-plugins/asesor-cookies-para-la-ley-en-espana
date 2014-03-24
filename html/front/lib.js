@@ -36,9 +36,10 @@ var cdp_cookie = {
    },
 
    // Traigo aviso y lo inserto en el DOM
+   // Actualizado: ya no pasa por el admin
    mostrar_aviso: function _mostrar_aviso() {
       jQuery.post( 
-         cdp_cookies_info.url_admin_ajax,
+         cdp_cookies_info.url_traer_aviso_php,
          { 
             action: 'traer_aviso' 
          }, 
@@ -57,7 +58,7 @@ var cdp_cookie = {
          },
          'json'
       );
-   },
+   }, 
 
    //
    comportamiento: function _comportamiento() {
@@ -92,6 +93,7 @@ var cdp_cookie = {
    },
 
    // Traigo aviso en vista previa
+   // Ya no pasa por el admin
    mostrar_aviso_vista_previa: function _mostrar_aviso_vista_previa() {
       //
       var datos = cdp_cookie.variables_get();
@@ -99,7 +101,7 @@ var cdp_cookie = {
 
       //
       jQuery.post( 
-         cdp_cookies_info.url_admin_ajax, 
+         cdp_cookies_info.url_traer_aviso_php, 
          datos,
          function( resul ) {
             if( !resul || !resul.html || resul.html == 0 )
@@ -113,5 +115,5 @@ var cdp_cookie = {
          },
          'json'
       );
-   }
+   },
 };
