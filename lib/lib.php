@@ -3,8 +3,8 @@
 
 /* ======================================================================================
    @author     Carlos Doral Pérez (http://webartesanal.com)
-   @version    0.11
-   @copyright  Copyright &copy; 2013 Carlos Doral Pérez, All Rights Reserved
+   @version    0.15
+   @copyright  Copyright &copy; 2013-2014 Carlos Doral Pérez, All Rights Reserved
                License: GPLv2 or later
    ====================================================================================== */
 

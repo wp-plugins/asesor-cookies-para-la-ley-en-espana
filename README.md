@@ -1,4 +1,4 @@
 Asesor de Cookies para normativa española
 -------------------------------------------------
 
-Plugin para establecer la base legal inicial sobre normativa de cookies española en su web.
+Plugin para ayudarle a cumplir con la normativa de cookies española en su web.

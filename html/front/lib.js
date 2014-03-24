@@ -1,8 +1,8 @@
 
 /* ======================================================================================
    @author     Carlos Doral Pérez (http://webartesanal.com)
-   @version    0.11
-   @copyright  Copyright &copy; 2013 Carlos Doral Pérez, All Rights Reserved
+   @version    0.14
+   @copyright  Copyright &copy; 2013-2014 Carlos Doral Pérez, All Rights Reserved
                License: GPLv2 or later
    ====================================================================================== */
 
@@ -14,9 +14,15 @@ var cdp_cookie = {
    // vars
    _id_cookie: 'cdp-cookies-plugin-wp',
 
-   // Compruebo si es visitante nuevo si ya existe la cookie
+   //
+   // Compruebo si ya existe la cookie si es visitante nuevo.
+   //
+   // Modif: 08-ene-2014. Compruebo primero si existe la cookie antes del contenido de la misma
+   //
    ya_existe_cookie: function _ya_existe_cookie() {
-      return jQuery.cookie( cdp_cookie._id_cookie ) == 'cdp';
+      if( jQuery.cookie( cdp_cookie._id_cookie ) != null )
+         return jQuery.cookie( cdp_cookie._id_cookie ) == 'cdp';
+      return false;
    },
 
    // Guardo cookie
@@ -30,9 +36,10 @@ var cdp_cookie = {
    },
 
    // Traigo aviso y lo inserto en el DOM
+   // Actualizado: ya no pasa por el admin
    mostrar_aviso: function _mostrar_aviso() {
       jQuery.post( 
-         info.url_admin_ajax,
+         cdp_cookies_info.url_traer_aviso_php,
          { 
             action: 'traer_aviso' 
          }, 
@@ -42,10 +49,26 @@ var cdp_cookie = {
             else
                jQuery( 'body' ).prepend( resul.html );
             if( resul.layout == 'ventana' )
-               jQuery( '.cdp-cookies-alerta' ).fadeIn( 1000 );
+               jQuery( '.cdp-cookies-alerta' ).fadeIn( 500 );
+            if( jQuery( '.cdp-cookies-boton-cerrar' ).length > 0 )
+               jQuery( '.cdp-cookies-boton-cerrar' ).click( function() {
+                  cdp_cookie.poner_cookie();
+                  cdp_cookie.ocultar_aviso();
+               } );
          },
          'json'
       );
+   }, 
+
+   //
+   comportamiento: function _comportamiento() {
+      return cdp_cookies_info.comportamiento;
+   },
+
+   //
+   ocultar_aviso: function _ocultar_aviso() {
+      if( jQuery( '.cdp-cookies-alerta' ).length > 0 )
+         jQuery( '.cdp-cookies-alerta' ).fadeOut( 500 );
    },
 
    // Preparo la query string
@@ -70,6 +93,7 @@ var cdp_cookie = {
    },
 
    // Traigo aviso en vista previa
+   // Ya no pasa por el admin
    mostrar_aviso_vista_previa: function _mostrar_aviso_vista_previa() {
       //
       var datos = cdp_cookie.variables_get();
@@ -77,10 +101,10 @@ var cdp_cookie = {
 
       //
       jQuery.post( 
-         info.url_admin_ajax, 
+         cdp_cookies_info.url_traer_aviso_php, 
          datos,
          function( resul ) {
-            if( !resul || !resul.html || resul.html == 0 )
+            if( !resul || !resul.html || resul.html == 0 )
                return;
             if( resul.layout == 'pagina' && resul.posicion == 'inferior' )
                jQuery( 'body' ).append( resul.html );
@@ -91,5 +115,5 @@ var cdp_cookie = {
          },
          'json'
       );
-   }
+   },
 };

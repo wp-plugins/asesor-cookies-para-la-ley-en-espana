@@ -4,16 +4,18 @@
 	<p>
 		<a href="javascript:;" class="cdp-cookies-bot-instrucciones">[Ocultar/Mostrar instrucciones]</a>
 		&nbsp;&nbsp;&nbsp;
-		<a href="http://webartesanal.com">Plugin creado por Carlos Doral Pérez (webartesanal.com)</a>
+		<a href="http://webartesanal.com">Plugin creado por Carlos Doral (webartesanal.com)</a>
 	</p>
+
+<div class="cdp-cookies-publi">
+	<a href="http://webartesanal.com/blog/como-crear-una-pagina-web-profesional-economica-con-blog-y-lista-para-usar-apta-para-dispositivos-moviles/" target="_blank">Corporalia: Tu página Wordpress empresarial con contenido y lista para usar, adaptada a dispositivos móviles, instalada en tu servidor por sólo <span>249€!</span></a>
+</div>
 
 <div class="cdp-cookies-instrucciones">
 
-	<p>Este plugin le va a permitir actualizar su web a la <b>ley de cookies española</b>. El funcionamiento consiste en mostrar un mensaje cada vez que un nuevo usuario visita su web avisándole que si sigue navegando está <b>aceptando</b> la recepción de cookies y la <b>política de cookies</b> de su web.</p>
+	<p>Este plugin le va a ayudar a crear la política de cookies para su sitio web. El funcionamiento consiste en mostrar un mensaje cada vez que un nuevo usuario visita su web avisándole que si sigue navegando está <b>aceptando</b> la recepción de cookies y la <b>política de cookies</b> de su web.</p>
 
-	<p>Además, este plugin le proporciona los textos legales y técnicos que usted necesita, se generan automáticamente y los puede editar si lo desea. Estos textos son la <b>política de cookies</b>, la <b>descripción técnica de las cookies</b> y las </b>instrucciones de manipulación de cookies</b> desde los <b>navegadores</b> más populares.</p>
-
-	<p>Para configurar este plugin tiene que asignar los valores de estilo y formato para el <b>mensaje mostrado al usuario</b> que aparecen en este formulario y debe pulsar el botón <b>Crear páginas automáticamente</b> que le creará una página de <b>Política de Cookies</b> y otra de <b>Descripción de las cookies</b>, fundamentales para cumplir con la normativa.</p>
+	<p>Para configurar este plugin tiene que asignar los valores de estilo y formato para el <b>mensaje mostrado al usuario</b> que aparecen en este formulario y debe pulsar el botón <b>Crear páginas automáticamente</b> que le creará una página de <b>Política de Cookies</b> y otra de <b>Descripción de  cookies</b>, fundamentales para cumplir con la normativa.</p>
 
 	<p>Una vez creadas las páginas, debe editar la de <b>Política de cookies</b> y debe cambiar o completar los siguientes puntos:
 	<ol>
@@ -26,6 +28,43 @@
 </div>
 
 	<form>
+
+		<!-- Texto del aviso -->
+		<div class="cdp-cookies-grid">
+			<div class="cdp-cookies-4c">
+				<label class="padv10"><b>Aviso</b> mostrado al visitante</label>
+			</div>
+			<div class="cdp-cookies-5c">
+				<textarea name="texto_aviso" id="texto_aviso" rows="6"><?php echo cdp_cookies::parametro( 'texto_aviso' );?></textarea>
+			</div>
+		</div>
+
+		<!-- Comportamiento -->
+		<div class="cdp-cookies-grid">
+			<div class="cdp-cookies-4c">
+				<label><b>Cuándo</b> desaparece el aviso:</label>
+			</div>
+			<div class="cdp-cookies-5c">
+				<?php
+				$opciones = array( 
+					'navegar' => 'Al navegar, automáticamente',
+					'cerrar' => 'Cuando el usuario pulse CERRAR',
+					'aceptar' => 'Cuando el usuario pulse ACEPTAR'
+				);
+				echo cdp_cookies_html::select( "comportamiento", $opciones, true, cdp_cookies::parametro( 'comportamiento' ) );
+				?>
+			</div>
+		</div>
+
+		<!-- Tamaño del texto -->
+		<div class="cdp-cookies-grid">
+			<div class="cdp-cookies-4c">
+				<label class="padv10">Tamaño del texto del aviso</label>
+			</div>
+			<div class="cdp-cookies-5c">
+				<input type="text" name="tam_fuente" id="tam_fuente" value="<?php echo cdp_cookies::parametro( 'tam_fuente' );?>">
+			</div>
+		</div>
 
 		<!-- Layout -->
 		<div class="cdp-cookies-grid">
@@ -188,6 +227,6 @@
 
 	</form>
 
-	<p>Este plugin pretende ahorrar tiempo y esfuerzo a su empresa para que pueda diseñar una correcta y adecuada política de cookies en su página web. El creador de este plugin no se hace responsable, ni tiene porqué intervenir en posibles litigios o acciones legales que puedan emprender contra su empresa por un posible incumplimiento de la citada ley de cookies. Es su obligación acudir a un abogado para que revise su política de cookies con el fin de conocer si cumple todos los requisitos solicitados por la Agencia de Protección de Datos.</p>
+	<p>Este plugin pretende ahorrar tiempo y esfuerzo a su empresa para que pueda diseñar una correcta y adecuada política de cookies en su página web. El creador de este plugin no se hace responsable, ni tiene porqué intervenir en posibles litigios o acciones legales que puedan emprender contra su empresa por un posible incumplimiento de la citada ley de cookies. Es su obligación acudir a un abogado para que revise su política de cookies con el fin de conocer si cumple todos los requisitos solicitados por la Agencia Española de Protección de Datos.</p>
 
 </div>

@@ -45,6 +45,32 @@
 }
 
 /*============================================
+  Publi
+  ============================================*/
+.cdp-cookies-publi {
+	background-color: #76abdc;
+	margin: 10px 0;
+	padding: 10px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+}
+.cdp-cookies-publi a {
+	display: block;
+	color: #fff;
+	text-decoration: none;
+	border: none;
+}
+.cdp-cookies-publi a:hover {
+	color:#ccc;
+}
+.cdp-cookies-publi a span {
+	font-size: 18px;
+	color:#444;
+}
+
+/*============================================
   Grid
   ============================================*/
 .cdp-cookies-grid {
@@ -115,6 +141,24 @@
 	padding-bottom: 0;
 }
 .cdp-cookies-admin form input[type="text"] {
+	width: 100%;
+	display: block;
+	padding: 10px;
+	margin:0;
+	color: #666666;
+	background-color: #fff;
+	font-family: "Arial";
+	font-size:12px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.cdp-cookies-admin form textarea {
 	width: 100%;
 	display: block;
 	padding: 10px;
