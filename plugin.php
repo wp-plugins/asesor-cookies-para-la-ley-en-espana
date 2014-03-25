@@ -4,7 +4,7 @@
 Plugin Name: Asesor de Cookies
 Plugin URI: http://webartesanal.com
 Description: Este plugin avisa a los nuevos visitantes de su web sobre la utilización de cookies en su página y le proporciona los textos iniciales para que pueda crear una política de cookies correcta.
-Version: 0.16
+Version: 0.17
 Author: Carlos Doral Pérez
 Author URI: http://webartesanal.com
 License: GPLv2 or later
