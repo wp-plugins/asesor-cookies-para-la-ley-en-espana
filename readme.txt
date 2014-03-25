@@ -3,7 +3,7 @@ Contributors: Carlos Doral Pérez (<a href="http:://webartesanal.com">webartesan
 Tags: cookie, cookies, spain, ley, law, politica, policy, españa, normativa
 Requires at least: 3.5
 Tested up to: 3.8.1
-Stable tag: 0.15
+Stable tag: 0.16
 License: GPLv2 or later
 
 Este plugin le va a facilitar la confección de la política de cookies para su sitio web proporcionándole los textos legales y técnicos iniciales.
@@ -42,6 +42,9 @@ Si lo desea, como método alternativo de instalación puede ir a la sección Plu
 4. Ahora siga desde el paso 2 de la sección anterior.
 
 == Changelog ==
+
+= 0.16 =
+* Errores al subir al repositorio svn.
 
 = 0.15 =
 * Validación W3C, la inclusión de CSS no validaba, gracias por avisar Julio!
