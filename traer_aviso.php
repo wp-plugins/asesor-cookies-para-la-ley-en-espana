@@ -16,12 +16,15 @@
     You should have received a copy of the GNU General Public License
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+    version 0.18
+
+    He eliminado la inclusión de los archivos lib/*.php porque ya están presentes
+    en el include WP.
 */
 
 	// Configuración y definiciones
 	require_once dirname( __FILE__ ) . '/external-wp.php';
-	require_once dirname( __FILE__ ) . '/lib/lib.php';
-	require_once dirname( __FILE__ ) . '/lib/plugin.php';
 	
 	// Lógica del plugin
 	try 
