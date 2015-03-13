@@ -6,7 +6,7 @@
 	width: 100%;
 	color:#bbbbbb;
 	background-color: #444444;
-	z-index: 10000;
+	z-index: 100000;
 }
 .cdp-cookies-alerta .cdp-cookies-texto {
 	max-width: 960px;
