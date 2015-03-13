@@ -3,7 +3,7 @@ Contributors: Carlos Doral Pérez (<a href="http:://webartesanal.com">webartesan
 Tags: cookie, cookies, spain, ley, law, politica, policy, españa, normativa
 Requires at least: 3.5
 Tested up to: 3.8.1
-Stable tag: 0.18
+Stable tag: 0.19
 License: GPLv2 or later
 
 Este plugin le va a facilitar la confección de la política de cookies para su sitio web proporcionándole los textos legales y técnicos iniciales.
@@ -42,6 +42,14 @@ Si lo desea, como método alternativo de instalación puede ir a la sección Plu
 4. Ahora siga desde el paso 2 de la sección anterior.
 
 == Changelog ==
+
+= 0.19 =
+* Se añade botón Configuración en la página de plugins para acceder directamente a la configuración del Asesor de Cookies.
+* Se elimina una petición ajax al servidor por generar problemas en algunas instalaciones WP.
+* Se combinan los 3 archivos JS en uno sólo para mejorar el rendimiento.
+* Se arregla la previsualización que no funcionaba correctamente.
+* Se resuelve problema cuando hay dos instalaciones WP en el mismo dominio y anidadas. Gracias Mikel!
+* Detalles CSS
 
 = 0.18 =
 * En algunas instalaciones se producian definiciones duplicadas en traer_aviso.php. Gracias a Mikel Gutierrez por su soporte.

@@ -50,10 +50,16 @@
 .cdp-cookies-publi {
 	margin: 20px 0;
 }
+.cdp-cookies-publi:after {
+	display: table;
+	content: "";
+	clear:both;
+}
 .cdp-cookies-publi a {
+	float:left;
 	background-color: #76abdc;
 	padding: 10px;
-	margin: 0 10px 0 0;
+	margin: 0 10px 5px 0;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
