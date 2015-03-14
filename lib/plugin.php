@@ -2,7 +2,7 @@
 
 /* ======================================================================================
    @author     Carlos Doral Pérez (http://webartesanal.com)
-   @version    0.19
+   @version    0.21
    @copyright  Copyright &copy; 2013-2014 Carlos Doral Pérez, All Rights Reserved
                License: GPLv2 or later
    ====================================================================================== */
@@ -122,7 +122,7 @@ class cdp_cookies
 		if( !self::$nombre_plugin )
 			self::$nombre_plugin = plugin_basename( CDP_COOKIES_DIR_RAIZ . '/plugin.php' );
 		if( $archivo != self::$nombre_plugin )
-			return;
+			return $enlaces;
 
 		//
 		// Procedo
